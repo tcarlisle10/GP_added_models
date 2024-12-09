@@ -1,0 +1,41 @@
+#  do the imports
+#  the swagger goes under
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def create_app(config_name):
+    app = Flask(__name__)
+    app.config.from_object(f"config.{config_name}")
+
+    api = Api(app)
+
+    # app.register_blueprint
+
+
+
+
+    db.init_app(app)
+    ma.init(app)
+    Cache.init_app
+
+    my_limiter = Limiter(
+        key_func=get_remote_address, default_limits=["100 per day", "25 per hour"]
+    )
+
+    my_limiter.init_app(app)
+
+    return app
